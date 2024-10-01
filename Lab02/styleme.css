@@ -28,3 +28,58 @@ h2 {
     width: 200px;
     height: auto;
 }
+
+p::first-letter {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+a {
+    color: #ff7f50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    width: 50%;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #333333;
+}
+
+footer h2 {
+    color: #ffd700;
+}
+
+footer form {
+    display: flex;
+    flex-direction: column;
+}
+
+footer label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+footer input, footer textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+}
+
+footer input[type="submit"] {
+    background-color: #ff7f50;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+footer input[type="submit"]:hover {
+    background-color: #ff6a35;
+}
