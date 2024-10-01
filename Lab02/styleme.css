@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #444444;
+    color: #f0f0f0;
+    padding: 20px;
+}
+
+h1 {
+    color: #7b9dec;
+    font-size: 3em;
+}
+
+h2 {
+    color: #7b9dec;
+}
+
+.highlight {
+    color: #ffd700;
+}
+
+.moods {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end
+}
+
+.moods img {
+    width: 200px;
+    height: auto;
+}

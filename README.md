@@ -19,10 +19,10 @@ Tuan Anh Huynh - 618661
 - `<strong>`: Inline
 - `<i>`: Inline
 - `<form>`: Block
-- `<input>`: Inline
-- `<textarea>`: Inline
-- `<button>`: Inline
-- `<select>`: Inline
-- `<option>`: Inline
+- `<input>`: inline-block
+- `<textarea>`: inline-block
+- `<button>`: inline-block
+- `<select>`: inline-block
+- `<option>`: block
 - `<label>`: Inline
 
