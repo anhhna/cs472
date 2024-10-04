@@ -1,0 +1,39 @@
+Code 1
+1. Global EC creation:
+Outer: null, LE: [{a=undefined, b=undefined, c=undefined}], TDZ{x}
+2. Global EC execution:
+Outer: null, LE: [{x=undefined, a=5, b=10, c=fn}], TDZ{}
+
+3.c FEC creation:
+Outer: Global, LE: [{a=8, b=9, c=10, f=undefined, x=undefined}], TDZ{...}
+4.c FEC execution:
+Outer: Global, LE: [{f=fn, x=10}], TDZ{...}
+
+5.f FEC creation:
+Outer: c, LE: [{a=8, b=9, c=10, x=undefined}], TDZ{...}
+6.f FEC execution:
+Outer: c, LE: [{b=8, b=10, x=5}], TDZ{...}
+
+=================================================
+Code 2
+1. Global EC creation:
+Outer: null, LE: [{x=undefined, myFunction: fn}], TDZ{...}
+2. Global EC execution:
+Outer: null, LE: [{x=9,x=5}], TDZ{...}
+
+3.myFunction FEC creation:
+Outer: Global, LE: [{...}], TDZ{...}
+4.myFunction FEC execution:
+Outer: Global, LE: [{...}], TDZ{...}
+
+=================================================
+Code 3
+1. Global EC creation:
+Outer: null, LE: [{foo=undefined, bar: fn}], TDZ{...}
+2. Global EC execution:
+Outer: null, LE: [{foo=1}], TDZ{...}
+
+3.bar FEC creation:
+Outer: Global, LE: [{foo: undefined}], TDZ{...}
+4.bar FEC execution:
+Outer: Global, LE: [{foo = 10}], TDZ{...}

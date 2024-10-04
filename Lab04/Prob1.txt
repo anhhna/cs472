@@ -1,0 +1,14 @@
+Code 1
+undefined
+8
+8
+9
+10
+undefined
+
+Code 2
+81
+25
+
+Code 3
+10
