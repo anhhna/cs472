@@ -1,0 +1,20 @@
+b.
+1. Global EC creation:
+LE:{show: fn, outer:null, this: window}, TDZ{str, user}
+2. Global EC execution:
+LE:{str = "Greetings, ", user = obj, outer:null, this: window}, TDZ{}
+
+3. display FEC creation:
+LE:{ outer: Global, this: user}, TDZ{...}
+4. display FEC execution:
+LE:{ outer: Global, this: user}, TDZ{...}
+
+3. show FEC creation:
+LE:{ msg = "hi", outer: display, this: window}, TDZ{...}
+4. show FEC execution:
+LE:{ outer: display, this: window}, TDZ{...}
+
+3. show FEC creation:
+LE:{ msg = "hello", outer: Global, this: user}, TDZ{...}
+4. show FEC execution:
+LE:{ outer: Global, this: user}, TDZ{...}
