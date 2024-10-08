@@ -1,0 +1,11 @@
+nextTick 1
+Promise.resolve 1
+Promise.resolve 2
+nextTick inside Promise
+this is setTimeout
+this is setImmediate 1
+this is setImmediate 2
+Promise.resolve inside setImmediate
+readablStream close event
+Hello from input.txt
+this is setTimeout
