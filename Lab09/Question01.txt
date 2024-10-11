@@ -1,5 +1,13 @@
+// ES Module
 promise 1
 nextTick 1
 setImmediate 1
 setTimeout 1
+Hello
+
+// CommonJS
+nextTick 1
+promise 1
+setTimeout 1
+setImmediate 1
 Hello
