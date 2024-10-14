@@ -1,7 +1,7 @@
-
 import express from 'express'
 
 const app = express()
+
 app.set('port', process.env.PORT || 3000)
 const port = app.get('port')
 
@@ -25,15 +25,9 @@ function calculate(req, res, operation) {
 
     let result;
     switch (operation) {
-        case 'addition':
-            result = a + b
-            break
-        case 'subtraction':
-            result = a - b
-            break
-        case 'multiplication':
-            result = a * b
-            break
+        case 'addition': result = a + b; break
+        case 'subtraction': result = a - b; break
+        case 'multiplication': result = a * b; break
         case 'division':
             if (b === 0)
                 return res.status(400).json('Divided by zero')
