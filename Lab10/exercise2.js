@@ -8,38 +8,27 @@ const port = app.get('port')
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-// get numbers from request
-function getNumbers(req) {
-    const a = parseFloat(req.params.a || req.query.a || req.body.a);
-    const b = parseFloat(req.params.b || req.query.b || req.body.b);
-    return { a, b }
-}
-
 // caculate result and send response
 function calculate(req, res, operation) {
-    const {a, b} = getNumbers(req)
+    const a = parseFloat(req.params.a || req.query.a || req.body.a);
+    const b = parseFloat(req.params.b || req.query.b || req.body.b);
 
     if (isNaN(a) || isNaN(b)) {
         return res.status(400).json({error: 'Invalid input numbers'})
     }
 
-    let result;
-    switch (operation) {
-        case 'addition': result = a + b; break
-        case 'subtraction': result = a - b; break
-        case 'multiplication': result = a * b; break
-        case 'division':
-            if (b === 0)
-                return res.status(400).json('Divided by zero')
-            result = a / b
-            break
-        case 'modulus':
-            if (b === 0)
-                return res.status(400).json('Modulus by zero')
-            result = a % b
-            break
-        default:
-            return res.status(400).json({error: 'Invalid operation'})
+    const operations = {
+        'addition': a + b,
+        'subtraction': a - b,
+        'multiplication': a * b,
+        'division': b !== 0 ? a / b : 'Divided by zero',
+        'modulus': b !== 0 ? a % b : 'Modulus by zero'
+    }
+
+    let result = operations[operation]
+    console.log(result);
+    if (result === undefined || typeof result === 'string') {
+        return res.status(400).json({error: result || 'Invalid operation'})
     }
 
     res.json({results: result})
