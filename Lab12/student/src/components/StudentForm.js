@@ -7,15 +7,16 @@ const StudentForm = ({ onStudentAdded }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newStudent = { id, name, program };
-        console.log(newStudent)
-        try {
-            onStudentAdded();
-            setId('');
-            setName('');
-            setProgram('');
-        } catch (error) {
-            console.error(error);
+        if (id && name && program) {
+            const newStudent = { id, name, program };
+            try {
+                onStudentAdded(newStudent);
+                setId('');
+                setName('');
+                setProgram('');
+            } catch (error) {
+                console.error(error);
+            }
         }
     };
 

@@ -5,10 +5,10 @@ import StudentList from './components/StudentList'
 import { useState } from 'react'
 
 function App() {
-    const [refresh, setRefresh] = useState(false);
+    const [student, setStudent] = useState({})
 
-    const handleStudentAdded = () => {
-        setRefresh(!refresh);
+    const handleStudentAdded = (student) => {
+        setStudent(student);
     };
 
     return (
@@ -16,7 +16,7 @@ function App() {
             <Header />
             <div style={styles.container}>
                 <StudentForm onStudentAdded={handleStudentAdded} />
-                <StudentList />
+                <StudentList newStudent={student}/>
             </div>
             <Footer />
         </div>

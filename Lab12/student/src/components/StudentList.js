@@ -1,7 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getAllStudents } from '../services/studentService';
 
-const StudentList = () => {
-    const [students, setStudents] = useState([]);
+const StudentList = ({newStudent}) => {
+    const [students, setStudents] = useState([])
+
+    useEffect(() => {
+        if (newStudent && newStudent.id) {
+            setStudents(prevStudents => 
+                prevStudents.find(student => student.id === newStudent.id) 
+                ? prevStudents 
+                : [...prevStudents, newStudent]
+            )
+        }
+    }, [newStudent])
+
+    const fetchStudents = async() => {
+        try {
+            const response = await getAllStudents()
+            setStudents(response.data)
+        } catch (error) {
+            console.log('Failed to fetch students: ', error)
+        }
+    }
 
     return (
         <div style={styles.list}>
@@ -15,8 +35,11 @@ const StudentList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {students.map(student => (
-                        <tr key={student.id} style={styles.tr}>
+                    {students.map((student, index) => (
+                        <tr key={student.id} style={{
+                            backgroundColor: index % 2 === 0 ? '#f2f2f2' : 'white'
+                        }}
+                        >
                             <td style={styles.td}>{student.id}</td>
                             <td style={styles.td}>{student.name}</td>
                             <td style={styles.td}>{student.program}</td>
@@ -39,23 +62,18 @@ const styles = {
     table: {
         width: '100%',
         borderCollapse: 'collapse',
-        marginTop: '20px',
+        marginTop: '20px'
     },
     th: {
         padding: '10px',
         textAlign: 'left',
         borderTop: '1px solid #ddd',
-        borderBottom: '1px solid #ddd',
+        borderBottom: '1px solid #ddd'
     },
     td: {
         padding: '10px',
         textAlign: 'left',
         borderBottom: '1px solid #ddd',
-    },
-    tr: {
-        ':hover': {
-            backgroundColor: '#f1f1f1',
-        }
     }
 };
 
