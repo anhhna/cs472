@@ -1,23 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { getAllStudents } from '../services/studentService';
 
-const StudentList = ({newStudent}) => {
+const StudentList = () => {
     const [students, setStudents] = useState([])
 
     useEffect(() => {
-        if (newStudent && newStudent.id) {
-            setStudents(prevStudents => 
-                prevStudents.find(student => student.id === newStudent.id) 
-                ? prevStudents 
-                : [...prevStudents, newStudent]
-            )
-        }
-    }, [newStudent])
+        fetchStudents()
+    })
 
     const fetchStudents = async() => {
         try {
-            const response = await getAllStudents()
-            setStudents(response.data)
+            const students = await getAllStudents()
+            setStudents(students)
         } catch (error) {
             console.log('Failed to fetch students: ', error)
         }

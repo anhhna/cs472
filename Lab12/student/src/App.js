@@ -5,18 +5,12 @@ import StudentList from './components/StudentList'
 import { useState } from 'react'
 
 function App() {
-    const [student, setStudent] = useState({})
-
-    const handleStudentAdded = (student) => {
-        setStudent(student);
-    };
-
     return (
         <div>
             <Header />
             <div style={styles.container}>
-                <StudentForm onStudentAdded={handleStudentAdded} />
-                <StudentList newStudent={student}/>
+                <StudentForm/>
+                <StudentList/>
             </div>
             <Footer />
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { createStudent } from '../services/studentService';
 
-const StudentForm = ({ onStudentAdded }) => {
+const StudentForm = () => {
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [program, setProgram] = useState('');
@@ -10,7 +11,7 @@ const StudentForm = ({ onStudentAdded }) => {
         if (id && name && program) {
             const newStudent = { id, name, program };
             try {
-                onStudentAdded(newStudent);
+                await createStudent(newStudent)
                 setId('');
                 setName('');
                 setProgram('');

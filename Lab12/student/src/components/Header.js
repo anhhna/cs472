@@ -13,7 +13,7 @@ const styles = {
         backgroundColor: '#ff5722',
         color: 'white',
         textAlign: 'left',
-        padding: '0px 10px'
+        padding: '1px 10px'
     }
 }
 
