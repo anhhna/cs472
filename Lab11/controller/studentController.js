@@ -62,7 +62,7 @@ const studentController = {
     deleteStudentById: (req, res, next) => {
         const id = req.params.id
         if (id) {
-            const student = Student.deleteStudentById(id * 1)
+            const student = Student.deleteStudentById(id)
             if (student)
                 res.status(200).json({message: "student deleted"})
             else

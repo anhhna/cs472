@@ -22,3 +22,14 @@ export const createStudent = async (student) => {
     }
     return response.json();
 };
+
+export const deleteStudent = async (id) => {
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE'
+    });
+
+    if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+    }
+    return response.json();
+};

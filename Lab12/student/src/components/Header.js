@@ -3,7 +3,7 @@ import React from 'react'
 const Header = () => {
     return (
         <header style={styles.header}>
-            <h1>Student Registration</h1>
+            <h1 style={{margin: '10px',fontSize: '28px'}}>Student Registration</h1>
         </header>
     )
 }

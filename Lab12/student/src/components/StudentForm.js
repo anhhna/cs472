@@ -92,16 +92,6 @@ const styles = {
         display: 'flex',
         justifyContent: 'flex-end'
     },
-    submitButton: {
-        backgroundColor: '#ff5722',
-        color: 'white',
-        padding: '10px 15px',
-        border: 'none',
-        borderRadius: '4px',
-        fontSize: '14px',
-        cursor: 'pointer',
-        width: '160px'
-    },
     resetButton: {
         backgroundColor: '#ccc',
         color: 'white',
@@ -111,6 +101,16 @@ const styles = {
         fontSize: '14px',
         cursor: 'pointer',
         marginRight: '15px',
+        width: '160px'
+    },
+    submitButton: {
+        backgroundColor: '#ff5722',
+        color: 'white',
+        padding: '10px 15px',
+        border: 'none',
+        borderRadius: '4px',
+        fontSize: '14px',
+        cursor: 'pointer',
         width: '160px'
     }
 };

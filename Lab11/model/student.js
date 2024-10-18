@@ -49,7 +49,7 @@ export default class Student {
     }
 
     static deleteStudentById(id) {
-        const index = students.findIndex(s => s.id === id)
+        const index = students.findIndex(s => s.id == id)
         if (index !== -1)
             return students.splice(index, 1)[0]
     }
