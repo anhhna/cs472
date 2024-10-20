@@ -1,22 +1,25 @@
 class Animal { 
-    constructor(name,speed) {
+    name: string;
+    speed: number;
+
+    constructor(name: string, speed: number) {
         this.speed = speed;
         this.name = name;
     }
     
-    run(speed = 0) { 
+    run(speed: number = 0): void { 
         this.speed += speed;
         console.log(`${this.name} runs with speed ${this.speed}.`);
     }
 
-    static compareBySpeed(a1, a2) {
+    static compareBySpeed(a1: Animal, a2: Animal): number {
         return a1.speed - a2.speed;
     }
 }
     
 // Inherit from Animal
 class Rabbit extends Animal {
-    hide() {
+    hide(): void {
         console.log(`${this.name} hides!`);
     }
 }
