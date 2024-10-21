@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { deleteStudent, getAllStudents } from '../services/studentService';
 
-const StudentList = () => {
+const StudentList = ({refresh}) => {
     const [students, setStudents] = useState([])
 
     useEffect(() => {
+        console.log('useEffect')
         fetchStudents()
-    })
+    }, [refresh])
 
     const fetchStudents = async() => {
+        console.log('fetch student')
         try {
             const students = await getAllStudents()
             setStudents(students)
@@ -21,6 +23,7 @@ const StudentList = () => {
         try {
             const student = await deleteStudent(id)
             console.log(student)
+            fetchStudents()
         } catch (error) {
             console.log('Failed to deleted student: ', error)
         }
