@@ -4,7 +4,7 @@ import dictionaryRouter from './route/dictionaryRoute.js'
 
 const app = express()
 
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 3001)
 const port = app.get('port')
 app.use(cors())
 app.use(express.json())
@@ -12,7 +12,7 @@ app.use(express.json())
 app.use('/api/v1/dictionary', dictionaryRouter)
 
 app.use((req, res, next) => {
-    res.status(404).json({ error: req.url + 'API not supported' })
+    res.status(404).json({ error: req.url + ' API not supported' })
 })
 
 app.use((err, req, res, next) => {

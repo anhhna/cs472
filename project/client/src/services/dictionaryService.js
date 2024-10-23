@@ -1,14 +1,39 @@
-import axios from 'axios'
-
-const API_URL = 'http://localhost:3000/api/v1/dictionary';
+const API_URL = 'http://localhost:3001/api/v1/dictionary';
 
 const dictionaryService = {
-    search: async (term) => {
-        const response = await axios.get(`${API_URL}/search?term=${term}`)
-        if (response.data.length === 0) {
-            throw new Error(`Error: ${response.statusText}`);
+    searchTerm: async (term) => {
+        const response = await fetch(`${API_URL}/terms/definition?term=${term}`)
+        if (!response.ok) {
+            throw new Error(`error: ${response.statusText}`)
         }
-        return response.data
+        const data = await response.json()
+        // Check if data is empty
+        if (!data || (Array.isArray(data) && data.length === 0)) {
+            throw new Error(`message: Term not found`)
+        }
+        return data
+    },
+
+    getPopularTerms: async () => {
+        const response = await fetch(`${API_URL}/terms/popular`)
+        if (!response.ok) {
+            throw new Error(`error: ${response.statusText}`)
+        }
+        return response.json()
+    },
+
+    updatePopularTerms: async (term) => {
+        const response = await fetch(`${API_URL}/terms/popular`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 'term': term }),
+        })
+        if (!response.ok) {
+            throw new Error(`error: ${response.statusText}`)
+        }
+        return response.json()
     }
 }
 
