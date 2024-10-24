@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import dictionaryService from '../services/dictionaryService.js'
 import SearchForm from './SearchForm.js'
 import SearchResults from './SearchResults.js'
@@ -8,16 +8,19 @@ const SearchTerm = ({ popularTerm }) => {
     const [entries, setEntries] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
+    const popularTermSetRef = useRef(false)
 
     useEffect(() => {
         if (popularTerm) {
             setSearchTerm(popularTerm)
+            popularTermSetRef.current = true // Mark as set from a popular term
         }
     }, [popularTerm])
 
     useEffect(() => {
-        if (searchTerm) {
+        if (searchTerm && popularTermSetRef.current) {
             handleSearch()
+            popularTermSetRef.current = false // Reset after handling search
         }
     }, [searchTerm])
 
