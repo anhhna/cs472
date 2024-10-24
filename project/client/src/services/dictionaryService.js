@@ -2,7 +2,7 @@ const API_URL = process.env.REACT_APP_API_URL
 
 const dictionaryService = {
     searchTerm: async (term) => {
-        const response = await fetch(`${API_URL}/terms/definition?term=${term}`)
+        const response = await fetch(`${API_URL}/terms/${term}/definition`)
         if (!response.ok) {
             throw new Error(`error: ${response.statusText}`)
         }

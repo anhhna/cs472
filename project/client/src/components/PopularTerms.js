@@ -71,7 +71,7 @@ const PopularTerms = () => {
 const styles = {
     container: {
         width: '500px',
-        margin: '50px auto 0px'
+        margin: '20px auto 50px'
     },
     header: {
         display: 'flex',

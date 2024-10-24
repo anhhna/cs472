@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import dictionaryService from '../services/dictionaryService.js'
+import SearchForm from './SearchForm.js'
+import SearchResults from './SearchResults.js'
 
 const SearchTerm = () => {
     const [searchTerm, setSearchTerm] = useState('')
@@ -7,7 +9,9 @@ const SearchTerm = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
-    const handleSearch = async () => {
+    const handleSearch = async (e) => {
+        e.preventDefault()
+
         if (!searchTerm) return
         setLoading(true)
         setError('')
@@ -20,9 +24,9 @@ const SearchTerm = () => {
 
             // update popular terms
             try {
-                await dictionaryService.updatePopularTerms(searchTerm);
+                await dictionaryService.updatePopularTerms(searchTerm)
             } catch (err) {
-                console.log('Error updating popular terms:', err.message);
+                console.log('Error updating popular terms:', err.message)
             }
         } catch (err) {
             setError('Term not found')
@@ -31,62 +35,21 @@ const SearchTerm = () => {
         }
     }
 
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            handleSearch()
-        }
-    }
-
-    // render list of definition
-    const renderEntry = (entry, index) => (
-        <li key={index}>
-            {entry.wordtype ? `(${entry.wordtype})` : ''} :: {entry.definition}
-        </li>
-    )
-
     return (
         <div>
-            <div style={styles.container}>
-                <label>Term: </label>
-                <input
-                    style={styles.input}
-                    type="text"
-                    placeholder="Search for a term"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                />
-                <button style={styles.button} onClick={handleSearch} disabled={loading}>
-                    {loading ? 'Looking up' : 'Look up'}
-                </button>
-            </div>
-            <div>
-                {error && <p style={styles.error}>{error}</p>}
-                <ol>
-                    {entries.map(renderEntry)}
-                </ol>
-            </div>
+            <SearchForm
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                handleSearch={handleSearch}
+                loading={loading}
+            />
+            <SearchResults 
+                entries={entries}
+                error={error}
+                loading={loading}
+            />
         </div>
     )
-}
-
-const styles = {
-    container: {
-        padding: '8px 25px',
-        backgroundColor: '#eeeeee',
-    },
-    error: {
-        padding: '0px 25px',
-        color: 'red',
-    },
-    input: {
-        marginRight: '10px',
-        padding: '5px',
-    },
-    button: {
-        width: '100px',
-        padding: '5px 10px',
-    },
 }
 
 export default SearchTerm

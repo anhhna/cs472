@@ -5,38 +5,7 @@ const router = express.Router()
 
 /**
  * @swagger
- * /api/v1/dictionary/terms/definition:
- *   get:
- *     summary: Search for a term definition
- *     description: Retrieve the definition of a specified term
- *     parameters:
- *       - in: query
- *         name: term
- *         schema:
- *           type: string
- *         required: true
- *         description: The term to search for
- *     responses:
- *       200:
- *         description: A list of matching dictionary entries
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   word:
- *                     type: string
- *                   definition:
- *                     type: string
- *       404:
- *         description: Term not found
- */
-
-/**
- * @swagger
- * /api/v1/dictionary/terms/definition/{term}:
+ * /api/v1/dictionary/terms/{term}/definition:
  *   get:
  *     summary: Search for a term definition
  *     description: Retrieve the definition of a specified term
@@ -64,7 +33,7 @@ const router = express.Router()
  *       404:
  *         description: Term not found
  */
-router.route(['/terms/definition', '/terms/definition/:term'])
+router.route('/terms/:term/definition')
     .get(dictionaryController.searchTerm)
 
 /**
