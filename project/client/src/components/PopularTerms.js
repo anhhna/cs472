@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import dictionaryService from '../services/dictionaryService.js'
 
 const PopularTerms = () => {
-    const counterMax = 2
+    const counterMax = 25
     const [popularTerms, setPopularTerms] = useState([])
     const [counter, setCounter] = useState(counterMax)
 
@@ -10,7 +10,6 @@ const PopularTerms = () => {
     const fetchPopularTerms = async () => {
         try {
             const data = await dictionaryService.getPopularTerms()
-            console.log(data)
             setPopularTerms(data)
         } catch (error) {
             console.error('Error fetching popular terms:', error)
@@ -39,8 +38,8 @@ const PopularTerms = () => {
     }, [])
 
     // Split terms into two columns
-    const leftColumnTerms = popularTerms.slice(0, 5);
-    const rightColumnTerms = popularTerms.slice(5);
+    const leftColumnTerms = popularTerms.slice(0, 5)
+    const rightColumnTerms = popularTerms.slice(5)
 
     return (
         <div style={styles.container}>
@@ -48,6 +47,7 @@ const PopularTerms = () => {
                 <h2>Popular searches</h2>
                 <p style={styles.countdown}>(Next refresh: {counter} seconds)</p>
             </div>
+            
             <div style={styles.columns}>
                 <ul style={styles.column}>
                     {leftColumnTerms.map((term, index) => (
