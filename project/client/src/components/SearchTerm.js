@@ -17,17 +17,17 @@ const SearchTerm = () => {
         try {
             const data = await dictionaryService.searchTerm(searchTerm)
             setEntries(data)
+
+            // update popular terms
+            try {
+                await dictionaryService.updatePopularTerms(searchTerm);
+            } catch (err) {
+                console.log('Error updating popular terms:', err.message);
+            }
         } catch (err) {
             setError('Term not found')
         } finally {
             setLoading(false)
-        }
-        
-        // update popular terms
-        try {
-            await dictionaryService.updatePopularTerms(searchTerm)
-        } catch (err) {
-            console.log(err.message)
         }
     }
 
