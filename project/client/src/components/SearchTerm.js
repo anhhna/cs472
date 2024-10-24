@@ -12,9 +12,14 @@ const SearchTerm = ({ popularTerm }) => {
     useEffect(() => {
         if (popularTerm) {
             setSearchTerm(popularTerm)
-            handleSearch()
         }
     }, [popularTerm])
+
+    useEffect(() => {
+        if (searchTerm) {
+            handleSearch()
+        }
+    }, [searchTerm])
 
     const handleSearch = async (e) => {
         if (e) {
