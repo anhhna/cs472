@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
 // Swagger setup
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
+// Dictionary API
 app.use('/api/v1/dictionary', dictionaryRouter)
 
 

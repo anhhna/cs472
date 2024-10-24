@@ -1,16 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import dictionaryService from '../services/dictionaryService.js'
 import SearchForm from './SearchForm.js'
 import SearchResults from './SearchResults.js'
 
-const SearchTerm = () => {
+const SearchTerm = ({ popularTerm }) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [entries, setEntries] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
+    useEffect(() => {
+        if (popularTerm) {
+            setSearchTerm(popularTerm)
+            handleSearch()
+        }
+    }, [popularTerm])
+
     const handleSearch = async (e) => {
-        e.preventDefault()
+        if (e) {
+            e.preventDefault()
+        }
 
         if (!searchTerm) return
         setLoading(true)
@@ -26,7 +35,7 @@ const SearchTerm = () => {
             try {
                 await dictionaryService.updatePopularTerms(searchTerm)
             } catch (err) {
-                console.log('Error updating popular terms:', err.message)
+                setError('Error updating popular terms')
             }
         } catch (err) {
             setError('Term not found')
@@ -43,7 +52,7 @@ const SearchTerm = () => {
                 handleSearch={handleSearch}
                 loading={loading}
             />
-            <SearchResults 
+            <SearchResults
                 entries={entries}
                 error={error}
                 loading={loading}
