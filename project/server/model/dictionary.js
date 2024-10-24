@@ -33,7 +33,6 @@ export default class Dictionary {
                 wordtype: row.wordtype,
                 definition: row.definition
             }))
-            console.log(formattedResult)
             return formattedResult
         } catch (error) {
             console.error('Error searching term:', error)

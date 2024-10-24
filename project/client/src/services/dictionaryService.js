@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001/api/v1/dictionary';
+const API_URL = process.env.REACT_APP_API_URL
 
 const dictionaryService = {
     searchTerm: async (term) => {
