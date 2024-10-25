@@ -17,3 +17,7 @@ please using zip file because I included .env file instead of github link
 
 ## API Docs
 [https://cs472-tvu2.onrender.com/api-docs/](https://cs472-tvu2.onrender.com/api-docs/)
+
+---
+MIU-CS472-WAP\
+Tuan Anh Huynh
