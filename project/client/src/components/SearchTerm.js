@@ -3,7 +3,7 @@ import dictionaryService from '../services/dictionaryService.js'
 import SearchForm from './SearchForm.js'
 import SearchResults from './SearchResults.js'
 
-const SearchTerm = ({ popularTerm }) => {
+const SearchTerm = ({ popularTerm, onTermSearched }) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [entries, setEntries] = useState([])
     const [loading, setLoading] = useState(false)
@@ -33,11 +33,15 @@ const SearchTerm = ({ popularTerm }) => {
         setLoading(true)
         setError('')
         setEntries([])
+        onTermSearched('')
 
         // search term
         try {
             const data = await dictionaryService.searchTerm(searchTerm)
             setEntries(data)
+
+            // set term to text to speech
+            onTermSearched(searchTerm)
 
             // update popular terms
             try {
